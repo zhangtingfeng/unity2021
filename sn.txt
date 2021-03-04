@@ -1,0 +1,24 @@
+Default incoming policy changed to 'deny'
+(be sure to update your rules accordingly)
+Firewall reloaded
+==================================================================
+Congratulations! Installed successfully!
+==================================================================
+外网面板地址: http://219.235.6.205:8888/f413214f
+内网面板地址: http://219.235.6.205:8888/f413214f
+username: emw21ggp
+password: e750709c
+If you cannot access the panel,
+release the following panel port [8888] in the security group
+若无法访问面板，请检查防火墙/安全组是否有放行面板[8888]端口
+==================================
+
+
+
+    git init
+git config --global core.autocrlf false
+    git add .
+    git commit -m "first commit"
+    git remote add origin http://1273844711%40qq.com@lvyan.tpddns.cn:24128/r/unity20210215.git
+git remote add origin ssh://1273844711@qq.com@lvyan.tpddns.cn:29418/unity20210215.git
+    git push -u origin master

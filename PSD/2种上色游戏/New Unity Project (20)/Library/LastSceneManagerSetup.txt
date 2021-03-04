@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Resources/TexturePainter ( Place Me Out of Resources)/Main.unity
+  isLoaded: 1
+  isActive: 1

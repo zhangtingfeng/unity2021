@@ -1,0 +1,6 @@
+C:\Works\gitworks20210226\ConsoleAppTest\bin\Debug\ConsoleAppTest.exe
+C:\Works\gitworks20210226\ConsoleAppTest\bin\Debug\ConsoleAppTest.pdb
+C:\Works\gitworks20210226\ConsoleAppTest\obj\Debug\ConsoleAppTest.csprojAssemblyReference.cache
+C:\Works\gitworks20210226\ConsoleAppTest\obj\Debug\ConsoleAppTest.csproj.CoreCompileInputs.cache
+C:\Works\gitworks20210226\ConsoleAppTest\obj\Debug\ConsoleAppTest.exe
+C:\Works\gitworks20210226\ConsoleAppTest\obj\Debug\ConsoleAppTest.pdb
