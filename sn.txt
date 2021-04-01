@@ -1,5 +1,5 @@
-Quick setup ¡ª if you¡¯ve done this kind of thing before
-or	
+Quick setup ¡ª if you¡¯ve done this kind of thing before   ½Æ»«µÄÈË guo
+or	 
 git@github.com:zhangtingfeng/unity2021.git
 Get started by creating a new file or uploading an existing file. We recommend every repository include a README, LICENSE, and .gitignore.
 
