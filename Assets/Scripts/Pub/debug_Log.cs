@@ -124,21 +124,28 @@ public class Debug_Log
 
     public static string HttpWebRequest_WebRequest_Post_JSON(string strURL, string strJSON)
     {
-        WebRequest httpWebRequest = WebRequest.Create(strURL);
-        httpWebRequest.ContentType = "text/json";
-        httpWebRequest.Method = "POST";
-        var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream());
+        try
+        {
+            WebRequest httpWebRequest = WebRequest.Create(strURL);
 
-        streamWriter.Write(strJSON);
-        streamWriter.Flush();
-        streamWriter.Close();
+            httpWebRequest.ContentType = "text/json";
+            httpWebRequest.Method = "POST";
+            var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream());
 
-        var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-        var streamReader = new StreamReader(httpResponse.GetResponseStream());
-        string resultstring = streamReader.ReadToEnd();
-        streamReader.Close();
-        //Eggsoft.Common.JsUtil.ShowMsg(resultstring);
-        return resultstring;
+            streamWriter.Write(strJSON);
+            streamWriter.Flush();
+            streamWriter.Close();
+
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            var streamReader = new StreamReader(httpResponse.GetResponseStream());
+            string resultstring = streamReader.ReadToEnd();
+            streamReader.Close();
+            //Eggsoft.Common.JsUtil.ShowMsg(resultstring);
+            return resultstring;
+        }
+        catch (Exception eee) {
+            return eee.Message;
+        }
 
     }
 }

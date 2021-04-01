@@ -51,7 +51,7 @@ namespace IndieStudio.DrawingAndColoring.Logic
         /// </summary>
         public void PrintScreen()
         {
-#if (UNITY_WEBPLAYER || UNITY_WEBGL || UNITY_EDITOR || UNITY_ANDROID)
+#if (UNITY_WEBPLAYER || UNITY_WEBGL || UNITY_EDITOR || UNITY_ANDROID || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN)
             Debug.LogWarning("Print feature works only in the Web platform, check out the Manual.pdf to implement print feature...");
             StartCoroutine("PrintScreenCoroutine");
 #endif
@@ -96,17 +96,45 @@ namespace IndieStudio.DrawingAndColoring.Logic
                 // androidJavaObject.Call("PreservationSPhoto", strPath, androidJavaObjectcurrentActivity);
                 string strError = androidJavaObject.Call<String>("PreservationSPhoto", strPath, androidJavaObjectcurrentActivity);
                 Debug_Log.Call_WriteLog(strError, "SaveBMPContentOKstrError", "Unity");
+
+                JsonResult JsonResultReturn = oliverImage.SaveToCloud(strToBase64String, imageName);
+
+                string strErrshow = JsonResultReturn.msg;
                 if (strError == "save ok")
                 {
+
+                    if (JsonResultReturn.code == 200)
+                    {
+                        strErrshow = "已经保存进相册,同时" + strErrshow;
+                    }
+                    else
+                    {
+                        strErrshow = "已经保存进相册";
+                    }
+
                     androidJavaObject = new AndroidJavaObject("com.shiyi.u001pinyingame.mediaplayerplugin.toastDialog");//这个是androidStudio创建的包名加上自己创建的脚本
-                    androidJavaObject.Call("ToastMakeText", "已经保存进相册", androidJavaObjectcurrentActivity);
+                    androidJavaObject.Call("ToastMakeText", strErrshow, androidJavaObjectcurrentActivity);
                 }
 
 #elif UNITY_EDITOR || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+                JsonResult JsonResultReturn = oliverImage.SaveToCloud(strToBase64String, imageName);
+
+                string strErrshow = JsonResultReturn.msg;
                 string strMyPicturesPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
                 string strMyPicturesPathFile = Path.Combine(strMyPicturesPath, imageName);
                 File.Copy(strPath, strMyPicturesPathFile);
-                MessageBOX.MessageBox(System.IntPtr.Zero, "已经保存进我的图片", "绘画保存", 0);
+                if (JsonResultReturn.code == 200)
+                {
+                    strErrshow = "已经保存进我的图片,同时" + strErrshow ;
+                }
+                else {
+                    strErrshow = "已经保存进我的图片";
+                }
+
+                MessageBOX.MessageBox(System.IntPtr.Zero, strErrshow, "绘画保存", 0);
+
+                // oliverImage.SaveToCloud(strToBase64String, imageName);
+
 #endif
 
                 //Application.ExternalCall("PrintImage", strToBase64String, imageName);
@@ -122,7 +150,7 @@ namespace IndieStudio.DrawingAndColoring.Logic
         }
 
 
-        
+
 
         /// <summary>
         /// Hide the objects.
